@@ -5,6 +5,28 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+PASSWORD = "123"
+
+first_user = User.create(
+    first_name: "Admin",
+    last_name: "User",
+    email: "admin@user.com",
+    password: PASSWORD
+)
+
+10.times do 
+    first_name = Faker::Name.first_name
+    last_name = Faker::Name.last_name
+    User.create(
+      first_name: first_name,
+      last_name: last_name,
+      email: "#{first_name}@#{last_name}.com",
+      password: PASSWORD
+    )
+  end
+  
+users = User.all
+
 
 10.times do
     random_days = Random.new.rand(1..30)
@@ -12,11 +34,12 @@
         title: Faker::Commerce.product_name,
         body: Faker::Marketing.buzzwords,
         end_date: Faker::Date.forward("#{random_days}"),
-        reserve_price: Faker::Number.between(from: 1, to: 10000)
+        reserve_price: Faker::Number.between(from: 1, to: 10000),
+        user: users.sample
     )
     if a.valid?
         rand(1..5).times do
-            Bid.create(price: Faker::Number.non_zero_digit, auction: a)
+            Bid.create(price: Faker::Number.non_zero_digit, auction: a, user: users.sample)
         end
     end
 end
@@ -26,3 +49,4 @@ bids = Bid.all
 
 puts Cowsay.say("Generated #{auctions.count} auctions", :cow)
 puts Cowsay.say("Generated #{bids.count} bids", :dragon)
+puts Cowsay.say("Generated #{users.count} users", :koala)
