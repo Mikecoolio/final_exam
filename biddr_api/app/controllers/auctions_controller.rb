@@ -15,6 +15,8 @@ class AuctionsController < ApplicationController
 
     def show
         @auction = Auction.find(params[:id])
+        @bids = @auction.bids
+        @bid = Bid.new
     end
 
     def index

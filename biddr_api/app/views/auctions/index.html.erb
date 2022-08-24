@@ -1,8 +1,7 @@
 
 <h1>Index</h1>
 <% @auctions.each do |auction| %>
-    <h2><% link_to auction.title, auction_path(auction) %> </h2>
-    <div>Title: <%= auction.title %> </div>
+    <div><h2>Title: <%= link_to auction.title, auction_path(auction) %> </h2></div>
     <div>Body: <%= auction.body %> </div>
     <div>Posted on <%= auction.created_at %> </div>
 <% end %>
