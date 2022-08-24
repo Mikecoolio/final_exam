@@ -1,6 +1,6 @@
 class Api::V1::AuctionsController < Api::ApplicationController
     before_action :authenticate_user!, only: [:create]
-    before_action :find_auction, only: [:show]
+    before_action :find_auction, only: [:show, :update]
 
     def index
         auctions = Auction.order(created_at: :desc)
@@ -8,8 +8,12 @@ class Api::V1::AuctionsController < Api::ApplicationController
     end
 
     def show
-        @auction = Auction.find(params[:id])
-        render(json: @auction)
+        if @auction.present?
+            render(json: @auction)
+        else
+            render(json: { error: "Unable to find auction"})
+        end
+        
     end
 
     def create
@@ -21,8 +25,6 @@ class Api::V1::AuctionsController < Api::ApplicationController
     end
 
     def update
-        auction = Auction.find(params[:id])
-
         if auction.update(auction_params)
             render json: { id: auction.id }
         else
@@ -34,6 +36,10 @@ class Api::V1::AuctionsController < Api::ApplicationController
     end
 
     private
+
+    def find_auction
+        @auction = Auction.find(params[:id])
+    end
 
     def auction_params
         params.require(:auction).permit(:title, :body, :end_date, :reserve_price)
