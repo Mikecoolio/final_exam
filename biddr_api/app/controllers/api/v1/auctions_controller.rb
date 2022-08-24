@@ -1,10 +1,10 @@
 class Api::V1::AuctionsController < Api::ApplicationController
-    before_action :authenticate_user, only: [:create]
+    before_action :authenticate_user!, only: [:create]
     before_action :find_auction, only: [:show]
 
     def index
         auctions = Auction.order(created_at: :desc)
-        render(json: auctions, each_serializer: )
+        render(json: auctions, each_serializer: AuctionCollectionSerializer)
     end
 
     def show
