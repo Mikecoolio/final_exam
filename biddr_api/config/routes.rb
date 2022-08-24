@@ -12,10 +12,16 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
   resource :session, only: [:new, :create, :destroy]
-  # namespace :api, defaults: { format: :json } do
-  #   namespace :v1 do
 
-  #   end
-  # end
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      root "welcome#new"
+      resources :auctions, only: [:index, :show, :create] do
+        resources :bids, only: [:create, :destroy]
+      end
+      resources :sessions, only: [:create]
+      resources :users, only: [:create]
+    end
+  end
 
 end
