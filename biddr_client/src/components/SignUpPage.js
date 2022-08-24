@@ -7,18 +7,17 @@ const SignUpPage = (props) => {
         const { currentTarget } = event
         event.preventDefault()
         const formData = new FormData(currentTarget)
-        const params = { user: {
+        const params = {
             first_name: formData.get('first_name'),
             last_name: formData.get('last_name'),
             email: formData.get('email'),
             password: formData.get('password'),
             password_confirmation: formData.get('password_confirmation')
         }
-        }
         User.create(params).then(user => {
             if(user?.id){
                 onSignUp() // store the user in the App state
-                props.history.push('/questions') //navigate to index
+                props.history.push('/') //navigate to index
             }
         })
     }

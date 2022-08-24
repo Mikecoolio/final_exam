@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import { User } from './requests';
 import AuctionIndexPage from './components/AuctionIndexPage'
 import AuctionShowPage from './components/AuctionShowPage';
+import SignInPage from './components/SignInPage';
 import SignUpPage from './components/SignUpPage';
 
 function App() {
@@ -35,7 +36,9 @@ function App() {
           <Route exact path="/" component={WelcomePage}></Route>
           <Route exact path="/auctions"><AuctionIndexPage /></Route>
           <Route exact path="/auctions/:id"><AuctionShowPage /></Route>
-          {/* <Route exact path="/sign-up" render={(routeProps) => <SignUpPage {...routeProps} onSignUp={getCurrentUser} />} ></Route> */}
+          <Route exact path="/sign-in"  
+          render={(routeProps) => <SignInPage {...routeProps} onSignIn={getCurrentUser}/>}></Route>
+          <Route exact path="/sign-up" render={(routeProps) => <SignUpPage {...routeProps} onSignUp={getCurrentUser} />} ></Route>
         </Switch>
       </BrowserRouter>
     </div>
