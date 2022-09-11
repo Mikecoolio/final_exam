@@ -35,7 +35,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={WelcomePage}></Route>
           <Route exact path="/auctions"><AuctionIndexPage /></Route>
-          <Route exact path="/auctions/:id"><AuctionShowPage /></Route>
+          <Route exact path="/auctions/:id" render={(routeProps) => <AuctionShowPage {...routeProps} />} ></Route>
           <Route exact path="/sign-in"  
           render={(routeProps) => <SignInPage {...routeProps} onSignIn={getCurrentUser}/>}></Route>
           <Route exact path="/sign-up" render={(routeProps) => <SignUpPage {...routeProps} onSignUp={getCurrentUser} />} ></Route>
