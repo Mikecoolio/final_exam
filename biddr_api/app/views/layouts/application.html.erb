@@ -11,6 +11,17 @@
   </head>
 
   <body>
+    <%= link_to "Home Page", root_path %>
+    <%= link_to "All Auctions", auctions_path %>
+    <%= button_to "New Auction", auctions_path, method: :POST %>
+
+    <% if user_signed_in? %>
+      <p> Hello, <%= current_user.first_name %> </p>
+      <%= button_to "Log Out", session_path, method: :delete %>
+    <% else %>
+      <%= link_to "Sign In", new_session_path %>
+      <%= link_to "Sign Up", new_user_path %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

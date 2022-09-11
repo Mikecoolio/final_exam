@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.welcome_page {
+  background-image: url(/public/auction.jpeg);
+  width: 100%;
+  height: 54em;
+}
+
+.welcome_text {
+  text-align: center;
+  font-size: 3em;
+  color: white;
+}

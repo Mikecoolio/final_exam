@@ -1,0 +1,15 @@
+<%= form_for @auction do |f| %>
+    <%= f.label :title %>
+    <%= f.text_area :title %>
+
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+
+    <%= f.label :end_date %>
+    <%= f.text_area :end_date %>
+
+    <%= f.label :reserve_price %> %>
+    <%= f.text_area :reserve_price %>
+
+    <%= f.submit "Create" %>
+<% end %>
